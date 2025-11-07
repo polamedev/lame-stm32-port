@@ -55,6 +55,7 @@ set_target_properties(
 target_sources(lame-stm32
     PRIVATE 
     src/drivers/Pin.c
+    src/drivers/timeService.c
 )
 
 
