@@ -1,4 +1,4 @@
-#include <lame/drivers/Pin_Impl.h>
+#include <lame/port/Pin_Impl.h>
 
 static void enablePortClock(const GPIO_TypeDef *GPIOx)
 {

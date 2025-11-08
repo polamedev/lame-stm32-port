@@ -53,8 +53,8 @@ set_target_properties(lame-stm32-port
 
 target_sources(lame-stm32-port
     PRIVATE
-    src/drivers/Pin.c
-    src/drivers/timeService.c
+    src/Pin.c
+    src/timeService.c
 )
 
 
@@ -62,7 +62,7 @@ target_include_directories(lame-stm32-port
     # Пути включения доступные только библиотеке
     PRIVATE
     src
-    include/lame/drivers
+    include/lame/port
 
     # Пути включения доступные самой библиотеке и пользователям
     PUBLIC
