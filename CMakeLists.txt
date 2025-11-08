@@ -5,7 +5,7 @@ project(
     lame
     VERSION 1.0.0
     DESCRIPTION
-        "Embedded lame lib port for stm32"
+    "Embedded lame lib port for stm32"
     LANGUAGES C
 )
 
@@ -39,46 +39,45 @@ set(CMAKE_DEBUG_POSTFIX -dev)
 # -----------------------------------------------------------------------------------------------------------------------------------
 
 # Добавление библиотеки
-add_library(lame-stm32 STATIC)
+add_library(lame-stm32-port STATIC)
 
 # Добавляем alias для библиотеки, полезно для избежания конфликта имен
-add_library(lame::lame-stm32 ALIAS lame-stm32)
+add_library(lame-port ALIAS lame-stm32-port)
 
 # VERSION - Устанавливаем версию библиотеки из версии проекта
 # SOVERSION - Версия совместимости - определяет версию API стоит изменять, когда меняется API, поведение или используемый интерфейс
-set_target_properties(
-    lame-stm32
+set_target_properties(lame-stm32-port
     PROPERTIES VERSION ${PROJECT_VERSION}
-               SOVERSION ${PROJECT_VERSION_MAJOR}
+    SOVERSION ${PROJECT_VERSION_MAJOR}
 )
 
-target_sources(lame-stm32
-    PRIVATE 
+target_sources(lame-stm32-port
+    PRIVATE
     src/drivers/Pin.c
     src/drivers/timeService.c
 )
 
 
-target_include_directories(lame-stm32
+target_include_directories(lame-stm32-port
     # Пути включения доступные только библиотеке
-    PRIVATE 
-    src 
+    PRIVATE
+    src
     include/lame/drivers
 
     # Пути включения доступные самой библиотеке и пользователям
     PUBLIC
     # Используется выражения генератора
     # При сборке BUILD_INTERFACE заменится на include
-    $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include> 
-    # При установке INSTALL_INTERFACE заменится на католог включения при установки
+    $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+    # При установке INSTALL_INTERFACE заменится на каталог включения при установки
     $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>
 )
 
-target_link_libraries(lame-stm32
+target_link_libraries(lame-stm32-port
     PUBLIC
-    lame::lame
+    lame-base
     PRIVATE
-    STM32_Drivers 
+    STM32_Drivers
 )
 
 # -----------------------------------------------------------------------------------------------------------------------------------
