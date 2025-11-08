@@ -26,7 +26,7 @@ Pin Pin_init(struct Pin_Impl *handle, GPIO_InitTypeDef *initStruct)
     return handle;
 }
 
-void Pin_SetActive(Pin handle, bool state)
+void Pin_Write(Pin handle, bool state)
 {
     if (state) {
         HAL_GPIO_WritePin(handle->GPIOx, handle->GPIO_Pin, GPIO_PIN_SET);
@@ -36,7 +36,7 @@ void Pin_SetActive(Pin handle, bool state)
     }
 }
 
-bool Pin_GetActive(const Pin handle)
+bool Pin_Read(const Pin handle)
 {
     return HAL_GPIO_ReadPin(handle->GPIOx, handle->GPIO_Pin) == GPIO_PIN_SET;
 }
