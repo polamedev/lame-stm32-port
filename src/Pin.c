@@ -1,4 +1,4 @@
-#include <lame/port/Pin_Impl.h>
+#include <lame/port/PinImpl.h>
 
 static void enablePortClock(const GPIO_TypeDef *GPIOx)
 {
@@ -17,7 +17,7 @@ static void enablePortClock(const GPIO_TypeDef *GPIOx)
     }
 }
 
-Pin Pin_init(struct Pin_Impl *handle, GPIO_InitTypeDef *initStruct)
+Pin Pin_init(struct PinImpl *handle, GPIO_InitTypeDef *initStruct)
 {
     enablePortClock(handle->GPIOx);
 

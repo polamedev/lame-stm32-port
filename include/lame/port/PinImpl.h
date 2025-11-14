@@ -4,9 +4,9 @@
 
 #include <st_hal.h>
 
-struct Pin_Impl {
+struct PinImpl {
     GPIO_TypeDef *GPIOx;
     uint16_t      GPIO_Pin;
 };
 
-Pin Pin_init(struct Pin_Impl *handle, GPIO_InitTypeDef *initStruct);
+Pin Pin_init(struct PinImpl *handle, GPIO_InitTypeDef *initStruct);
